@@ -49,9 +49,40 @@ This integration allows two main actions:
 
 ### Initialize a Payment
 
-Call the `initializePayment()` method to initiate a payment. If successful, the payment URL will open in the user's default web browser.
+Check the `initializePayment` method to initiate a payment on the `InitializePayment.cs`. If successful, the payment URL will open in the user's default web browser.
 
-Example:
 
-```csharp
-await initializePayment();
+### Query Payment Status
+
+Check the `QueryStatus` method to verify the status of a payment, and pass in the transactionId. on the `InitializePayment.cs`.
+
+## Classes and Properties
+
+### InitializePaymentRequestObject
+
+Defines the payment initialization request structure
+
+|Property       | Type                 |  Description                      
+| :------------ | :------------------- |  :-------------------------------------------------
+| amount        | `string`             | Amount to charge.
+| transactionId     | `string`             | Unique identifier for the transaction.
+| email          | `string`             | Customer email address.
+| mode          | `string`             | Payment mode (test/live).
+| currency          | `string`             | Currency code (e.g., NGN, USD).
+| productId          | `string?`             | Optional product ID.
+| applyConviniencyCharge          | `bool`             | If convenience charge should apply.
+| IsRecurring          | `bool`             | Specifies if payment is recurring.
+| productDescription          | `string?`             | Description of the product/service.
+| callbackUrl          | `string`             | URL to redirect to after payment.
+| metadata          | `List<Metadata>?`             | Additional data in key-value format.
+
+### Metadata
+
+Represents optional metadata for additional details about the transaction.
+
+|Property       | Type                 |  Description                      
+| :------------ | :------------------- |  :-------------------------------------------------
+| name        | `string?`             | Metadata field name
+| value     | `string?`             | Metadata field value
+
+
