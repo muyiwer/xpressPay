@@ -49,12 +49,12 @@ This integration allows two main actions:
 
 ### Initialize a Payment
 
-Check the `initializePayment` method to initiate a payment on the `InitializePayment.cs`. If successful, the payment URL will open in the user's default web browser.
+Check the `initializePayment` method to initiate a payment on the `InitializePayment.cs` file. If successful, the payment URL will open in the user's default web browser.
 
 
 ### Query Payment Status
 
-Check the `QueryStatus` method to verify the status of a payment, and pass in the transactionId. on the `InitializePayment.cs`.
+Check the `QueryStatus` method to verify the status of a payment, and pass in the transactionId on the `InitializePayment.cs` file.
 
 ## Classes and Properties
 
@@ -85,4 +85,43 @@ Represents optional metadata for additional details about the transaction.
 | name        | `string?`             | Metadata field name
 | value     | `string?`             | Metadata field value
 
+### InitializeResponseObject
 
+Defines the structure of the response from the payment initialization request.
+
+|Property       | Type                 |  Description                      
+| :------------ | :------------------- |  :-------------------------------------------------
+| id        | `string`             | ID of the transaction.
+| responseCode     | `string`             | Response code from the API.
+| responseMessage          | `string`             | Message associated with the response.
+| mode          | `Data`             | Contains payment URL and access code.
+
+### Data
+
+Nested in InitializeResponseObject, contains details like the payment URL.
+
+|Property       | Type                 |  Description                      
+| :------------ | :------------------- |  :-------------------------------------------------
+| id        | `string`             | Transaction ID.
+| paymentUrl          | `string`             | 	URL for completing the payment.
+| accessCode          | `string`             | Access code for the transaction.
+
+## Methods
+
+### initializePayment()
+
+This method initializes a payment using the InitializePaymentRequestObject. If successful, it opens the payment URL in the user's default web browser.
+
+```csharp
+var response = await initializePayment();
+```
+
+### QueryStatus(transactionId)
+This method queries the status of a specific transaction by transaction ID, sending the request to the Verify Payment endpoint.
+
+```csharp
+await QueryStatus("123456");
+```
+
+## Error Handling
+The integration includes error handling for `HttpRequestException` for network-related errors and general `Exception` handling for other issues.
