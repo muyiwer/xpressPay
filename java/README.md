@@ -1,4 +1,4 @@
-# Payment Initialization Java Client
+# XpressPay API Integration
 
 This is a Java client for initializing payments via the XpressPayments API. It creates a payment request payload in JSON format and sends it to the API, handling the response and any errors that occur.
 
@@ -54,3 +54,57 @@ public static void main(String[] args) {
 
     // Sending the request and handling the response in PaymentInitializer.java
 }
+```
+
+## Class Overview
+
+### Metadata
+
+The `Metadata` class is used to store additional key-value information to include in the API request metadata.
+
+- Represents additional information for the transaction.
+- **Constructor**
+  ```java
+  public Metadata(String name, String value)
+  ```
+  - Method: `toJson()`, returns JSON format of the metadata.
+
+  ### InitializePaymentRequestObject
+
+  - Builds the main payload with details like amount, transaction ID, email, etc.
+- **Constructor**
+`InitializePaymentRequestObject(String amount, String transactionId, String email, ...)`
+  - Method: `toJson()`, returns JSON format of the metadata.
+
+  ### PaymentInitializer
+- Sends the request to the API and handles the response.
+- Sets up the HTTP connection, sends the JSON payload, and reads the response.
+- Displays either a success message with response details or an error message.
+
+## Example Output
+
+A successful response might look like this:
+
+```json
+{
+    "data": {
+        "paymentUrl": "https://paymentgateway.com/link"
+    },
+    "status": "success"
+}
+```
+
+To open the `paymentUrl` in a browser, you can modify the code with JSON parsing and URI handling:
+
+```java
+JSONObject jsonResponse = new JSONObject(responseBody);
+String paymentUrl = jsonResponse.getJSONObject("data").getString("paymentUrl");
+Desktop.getDesktop().browse(new URI(paymentUrl));
+```
+
+## Error Handling
+- If the request fails, the program prints the HTTP response code and error message.
+- Exceptions such as connection issues or parsing errors are printed to help debugging.
+
+## License
+This project is licensed under the MIT License.
