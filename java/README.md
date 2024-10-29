@@ -107,4 +107,4 @@ Desktop.getDesktop().browse(new URI(paymentUrl));
 - Exceptions such as connection issues or parsing errors are printed to help debugging.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the CBN License.

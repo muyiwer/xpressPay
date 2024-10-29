@@ -125,3 +125,6 @@ await QueryStatus("123456");
 
 ## Error Handling
 The integration includes error handling for `HttpRequestException` for network-related errors and general `Exception` handling for other issues.
+
+## License
+This project is licensed under the CBN License.
